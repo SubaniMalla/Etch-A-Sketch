@@ -13,4 +13,15 @@ function createGrid(){
 }
 
 createGrid();
+drawOnHover();
 
+function drawOnHover(){
+    const boxes = document.querySelectorAll(".box");
+    boxes.forEach((box)=>{
+        box.addEventListener("mouseover", ()=>{
+            box.setAttribute("style","background-color:blue;");
+        });
+    });
+}
+   
+    
