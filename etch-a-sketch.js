@@ -24,13 +24,12 @@ function createGrid(gridNumber=16){
 
 function draw() {
     const click = document.querySelector("#click");
-    const hover = document.querySelector("#hover");
-
     click.addEventListener("click", drawOnClick);
     hover.addEventListener("click", drawOnHover);
 }
 
 function drawOnHover() {
+    const hover = document.querySelector("#hover");
     const boxes = document.querySelectorAll(".box");
     boxes.forEach(box => {
         box.removeEventListener("click", handleBoxClick);
