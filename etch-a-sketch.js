@@ -21,12 +21,14 @@ function createGrid(gridNumber=16){
 
 
 function drawOnHover(){
-    let color;
+    let color,opacity;
     const boxes = document.querySelectorAll(".box");
     boxes.forEach((box)=>{
         box.addEventListener("mouseover", ()=>{
-            color = randomColor();
+            color = generateRandomColor();
             box.style.backgroundColor = `rgb(${color})`;
+            opacity= generateOpacity();
+            box.style.opacity=opacity;
         });
     });
 }
@@ -48,14 +50,22 @@ function changeGridSize(){
             createGrid(gridNumber);
     });
 }
-function randomColor(){
+function generateRandomColor(){
     let r,g,b;
     r=(Math.floor(Math.random()*256));
     g=(Math.floor(Math.random()*256));
     b=(Math.floor(Math.random()*256));
-    color=(r + ',' + g + ',' + b);
+    color=(r + ',' + 0 + ',' + b);
     return color;
-    
+}
+let opacity=0;
+function generateOpacity(){
+    if(opacity>1){
+        opacity=0;
+    };
+    opacity+=0.1;
+    console.log(opacity);
+    return opacity;
 }
 
 createGrid();
