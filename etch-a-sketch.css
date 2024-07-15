@@ -3,16 +3,29 @@ body{
 }
 #main{
     display: flex;
-    flex-direction: column;
-    gap:20px;
+    flex-direction: row;
+    padding: 40px;
+}
+.content.one{
+flex: 1;
+display: flex;
+flex-direction: column;
+gap: 20px;
+align-items: flex-start;
+padding-left: 40px;
+}
+.content.two{
+flex: 2;
+}
+.colorbox{
+    display: flex;
+    gap: 10px;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-
 }
-
 #container{
-
+    border: solid #2e0d0d;
+    border-width: 1px;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -23,4 +36,15 @@ body{
 .box{
     border: solid #d9d9d9;
     border-width: 1px;
+}
+.title{
+    font-size: 50px;
+    margin: 0;
+}
+.subtitle{
+    font-style: italic;
+    margin: 0;
+}
+button{
+    
 }

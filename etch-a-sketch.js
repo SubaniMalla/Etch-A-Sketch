@@ -15,22 +15,45 @@ function createGrid(gridNumber=16){
        
         container.appendChild(row);
     }
+    draw();
     drawOnHover();
     changeGridSize();
+    removeBorder();
+    showBorder();
 }
 
+function draw() {
+    const click = document.querySelector("#click");
+    const hover = document.querySelector("#hover");
 
-function drawOnHover(){
-    let color,opacity;
+    click.addEventListener("click", drawOnClick);
+    hover.addEventListener("click", drawOnHover);
+}
+
+function drawOnHover() {
     const boxes = document.querySelectorAll(".box");
-    boxes.forEach((box)=>{
-        box.addEventListener("mouseover", ()=>{
-            color = generateRandomColor();
-            box.style.backgroundColor = `rgb(${color})`;
-            opacity= generateOpacity();
-            box.style.opacity=opacity;
-        });
+    boxes.forEach(box => {
+        box.removeEventListener("click", handleBoxClick);
+        box.addEventListener("mouseover", handleBoxMouseOver);
     });
+}
+
+function drawOnClick() {
+    const boxes = document.querySelectorAll(".box");
+    boxes.forEach(box => {
+        box.removeEventListener("mouseover", handleBoxMouseOver);
+        box.addEventListener("click", handleBoxClick);
+    });
+}
+
+function handleBoxMouseOver(event) {
+    const color = pickColor();
+    event.target.style.backgroundColor = color;
+}
+
+function handleBoxClick(event) {
+    const color = pickColor();
+    event.target.style.backgroundColor = color;
 }
 
 function changeGridSize(){
@@ -66,6 +89,28 @@ function generateOpacity(){
     opacity+=0.1;
     console.log(opacity);
     return opacity;
+}
+function pickColor(){
+    const color=document.querySelector("#colorPick").value;
+    return color;
+}
+function removeBorder(){
+    const boxes = document.querySelectorAll(".box");
+    const remove=document.querySelector("#remove");
+    remove.addEventListener("click",()=>{
+        boxes.forEach((box)=>{
+            box.style.border="none";
+        });
+    });    
+}
+function showBorder(){
+    const boxes = document.querySelectorAll(".box");
+    const remove=document.querySelector("#show");
+    remove.addEventListener("click",()=>{
+        boxes.forEach((box)=>{
+            box.style.border="1px solid #d9d9d9";
+        });
+    });    
 }
 
 createGrid();
